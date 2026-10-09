@@ -27,9 +27,9 @@ def index_to_letter(index, alphabet):
         return alphabet[index]
     return''
 
-def vigenere_index(key_letter, plaintext_leter, alphabet):
+def vigenere_index(key_letter, plaintext_letter, alphabet):
     return (letter_to_index(key_letter, alphabet) +
-            letter_to_index(plaintext_leter, alphabet)) % len(alphabet)
+            letter_to_index(plaintext_letter, alphabet)) % len(alphabet)
 
 def encrypt_vigenere(key, plaintext, alphabet):
     cipher_text = ''
@@ -44,8 +44,12 @@ def encrypt_vigenere(key, plaintext, alphabet):
     return cipher_text
 
 def undo_vigenere_index(key_letter, cypher_letter, alphabet):
-    return(letter_to_index(cypher_letter, alphabet) -
-            letter_to_index(key_letter, alphabet)) % len(alphabet)
+    key_index = alphabet.index(key_letter)
+    cypher_index = alphabet.index(cypher_letter)
+
+    plain_index = (cypher_index - key_index) % len(alphabet)
+
+    return alphabet[plain_index]
 
 def decrypt_vigenere(key, cipher_text, alphabet):
     plain_text = ''
@@ -56,7 +60,6 @@ def decrypt_vigenere(key, cipher_text, alphabet):
         elif (c.upper() in alphabet):
             plain_text += undo_vigenere_index(key[counter % len(key)], c, alphabet)
             counter += 1
-
     return plain_text
 
 
@@ -73,4 +76,6 @@ message = 'Up He Sees Me Im Down'
 #   )
 
 #print(encrypt_vigenere(key, message, alphabet))
-print(decrypt_vigenere(key, cipher_text, alphabet))
+
+#print(undo_vigenere_index('B', 'I', alphabet))
+print(decrypt_vigenere('B', 'I', alphabet))
