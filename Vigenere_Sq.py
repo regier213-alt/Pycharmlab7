@@ -53,13 +53,13 @@ def undo_vigenere_index(key_letter, cypher_letter, alphabet):
 
 def decrypt_vigenere(key, cipher_text, alphabet):
     plain_text = ''
-    counter = 0
-    for c in cipher_text:
-        if c == ' ':
-            plain_text += ' '
-        elif (c.upper() in alphabet):
-            plain_text += undo_vigenere_index(key[counter % len(key)], c, alphabet)
-            counter += 1
+    for i in range(len(cipher_text)):
+        key_letter = key[i % len(key)]
+        cipher_letter = cipher_text[i]
+        plain_letter = undo_vigenere_index(
+            key_letter, cipher_letter, alphabet
+        )
+        plain_text += plain_letter
     return plain_text
 
 
