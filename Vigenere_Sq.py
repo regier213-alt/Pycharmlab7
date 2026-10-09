@@ -62,10 +62,40 @@ def decrypt_vigenere(key, cipher_text, alphabet):
         plain_text += plain_letter
     return plain_text
 
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+while True:
+    print("\n--- Vigenere Cipher App ---")
+    print("1. Encrypt")
+    print("2. Decrypt")
+    print("3. Quit")
+
+    choice = input("Choose an option (1, 2, or 3): ")
+
+    if choice == "1":
+        plain_text = input("Enter plain text: ")
+        key = input("Enter encryption key: ")
+
+        encrypted_text = encrypt_vigenere(key, plain_text, alphabet)
+        print("Encrypted text:", encrypted_text)
+
+    elif choice == "2":
+        cipher_text = input("Enter cipher text: ")
+        key = input("Enter decryption key: ")
+
+        decrypted_text = decrypt_vigenere(key, cipher_text, alphabet)
+        print("Decrypted text:", decrypted_text)
+
+    elif choice == "3":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice. Please select 1, 2, or 3.")
 
 
 key = 'BANANABRD'
-alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
 message = 'Up He Sees Me Im Down'
 #vigenere_sq(alphabet)
 #print(letter_to_index('H', alphabet))
